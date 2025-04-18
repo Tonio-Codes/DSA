@@ -1,5 +1,6 @@
 #include "dArray.h"
 #include <iostream>
+#include <cstring> 
 
 
 dArray::dArray()
@@ -31,10 +32,7 @@ void dArray::reSize()
 {
     int* tmp = new int[size*2];
     size *= 2;
-    for(int i=0; i < len; ++i)
-    {
-        tmp[i] = arr[i];
-    }
+    std::memcpy(tmp, arr, size * sizeof(int));
     delete[] arr;
     arr = tmp;
 }
