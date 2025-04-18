@@ -88,6 +88,10 @@ void dArray::remove(int idx)
     {
         arr[idx] = 0;
         --len;
+        if(len <= size/3)
+        {
+            reduce();
+        }
         return;
     }
 
@@ -98,6 +102,19 @@ void dArray::remove(int idx)
         arr[i] = arr[i+1];
     }
     --len;
+    //check to see if size is 
+    if(len <= size/3)
+    {
+        reduce();
+    }
+}
+void dArray::reduce()
+{
+    int* tmp = new int[size/2];
+    size /= 2;
+    std::memcpy(tmp, arr, size * sizeof(int));
+    delete[] arr;
+    arr = tmp;
 }
 dArray::~dArray()
 {
