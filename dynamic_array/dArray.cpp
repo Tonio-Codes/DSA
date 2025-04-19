@@ -65,7 +65,6 @@ void dArray::pushFront(int val)
     }
     arr[0] = val;
     ++len;
-
 }
 
 int& dArray::operator[](int idx)
@@ -79,15 +78,21 @@ int& dArray::operator[](int idx)
 
 void dArray::remove(int idx)
 {
+
     if(idx >= len)
     {
         std::cerr << "out of range index!";
+
     }
     //removing the last element in the vector
     if(idx == len - 1)
     {
         arr[idx] = 0;
         --len;
+        if(len <= size/3)
+        {
+            reduce();
+        }
         return;
     }
 
@@ -98,6 +103,19 @@ void dArray::remove(int idx)
         arr[i] = arr[i+1];
     }
     --len;
+    //check to see if size is 
+    if(len <= size/3)
+    {
+        reduce();
+    }
+}
+void dArray::reduce()
+{
+    int* tmp = new int[size/2];
+    size /= 2;
+    std::memcpy(tmp, arr, size * sizeof(int));
+    delete[] arr;
+    arr = tmp;
 }
 dArray::~dArray()
 {

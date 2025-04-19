@@ -7,6 +7,7 @@ class dArray {
         int* arr;
         int len;
         void reSize();
+        void reduce();
 
     public:
         dArray();
