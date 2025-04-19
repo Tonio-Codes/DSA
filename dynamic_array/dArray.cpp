@@ -65,7 +65,6 @@ void dArray::pushFront(int val)
     }
     arr[0] = val;
     ++len;
-
 }
 
 int& dArray::operator[](int idx)
@@ -79,9 +78,11 @@ int& dArray::operator[](int idx)
 
 void dArray::remove(int idx)
 {
+
     if(idx >= len)
     {
         std::cerr << "out of range index!";
+
     }
     //removing the last element in the vector
     if(idx == len - 1)
